@@ -1,0 +1,319 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona vs Real Madrid: El Clásico Rivalry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-slide-in {
+            animation: slideIn 1s ease-out forwards;
+        }
+        .animate-fade-in {
+            animation: fadeIn 1.5s ease-in forwards;
+        }
+        .bg-gradient {
+            background: linear-gradient(135deg, #1e3a8a, #dc2626, #fef08a);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .team-logo {
+            transition: transform 0.5s ease;
+        }
+        .team-logo:hover {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <header class="bg-gradient py-6 text-center">
+        <h1 class="text-5xl font-bold animate-slide-in">El Clásico: Barcelona vs Real Madrid</h1>
+        <p class="text-xl mt-2 animate-fade-in">The Ultimate Rivalry in Football</p>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <!-- Head-to-Head Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Head-to-Head Record</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Logo" class="team-logo w-24 h-24 mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-center">Real Madrid</h3>
+                    <p class="text-center">Wins: 105</p>
+                </div>
+                <div class="bg-red-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="Barcelona Logo" class="team-logo w-24 h-24 mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-center">Barcelona</h3>
+                    <p class="text-center">Wins: 104</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-bold text-center">Draws</h3>
+                    <p class="text-center">52</p>
+                    <p class="text-center mt-2">Total Matches: 261</p>
+                </div>
+            </div>
+            <p class="text-center mt-4 text-lg">Win Ratio: Real Madrid 40.23% | Barcelona 39.85% | Draws 19.92%</p>
+            <p class="text-center text-sm mt-2">Data as of May 11, 2025</p>[](https://www.sportsmole.co.uk/football/real-madrid/el-clasico/head-to-head/real-madrid-vs-barcelona-head-to-head-record-and-past-meetings_541736.html)
+        </section>
+
+        <!-- Trophy Comparison Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Trophy Comparison</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr class="bg-gradient">
+                            <th class="p-4">Competition</th>
+                            <th class="p-4">Real Madrid</th>
+                            <th class="p-4">Barcelona</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">La Liga</td>
+                            <td class="p-4">36</td>
+                            <td class="p-4">27</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Copa del Rey</td>
+                            <td class="p-4">20</td>
+                            <td class="p-4">31</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Spanish Super Cup</td>
+                            <td class="p-4">13</td>
+                            <td class="p-4">14</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">UEFA Champions League</td>
+                            <td class="p-4">15</td>
+                            <td class="p-4">5</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">UEFA Super Cup</td>
+                            <td class="p-4">6</td>
+                            <td class="p-4">5</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Club World Cup</td>
+                            <td class="p-4">5</td>
+                            <td class="p-4">3</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Total Major Trophies</td>
+                            <td class="p-4">122</td>
+                            <td class="p-4">128</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-sm mt-2">Data as of May 2025</p>[](https://en.wikipedia.org/wiki/List_of_Real_Madrid_CF_records_and_statistics)
+        </section>
+
+        <!-- Best Players Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Legendary Players</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-bold text-center">Real Madrid</h3>
+                    <ul class="list-disc pl-6">
+                        <li><strong>Cristiano Ronaldo (2009-2018)</strong>: All-time top scorer with 450 goals, 4 Champions Leagues, 2 La Liga titles.</li>[](https://www.thehighlightsapp.com/blog/top-10-all-time-scorers-in-real-madrid-history)
+                        <li><strong>Alfredo Di Stéfano (1953-1964)</strong>: 5 European Cups, 8 La Liga titles, 308 goals.</li>[](https://en.wikipedia.org/wiki/El_Cl%25C3%25A1sico)
+                        <li><strong>Zinedine Zidane (2001-2006)</strong>: Iconic midfielder, 2002 Champions League volley, 1 La Liga title.</li>
+                    </ul>
+                </div>
+                <div class="bg-red-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-bold text-center">Barcelona</h3>
+                    <ul class="list-disc pl-6">
+                        <li><strong>Lionel Messi (2004-2021)</strong>: All-time top scorer with 672 goals, 10 La Liga titles, 4 Champions Leagues.</li>[](https://fcbarcelonalatestnews.com/barcelona-all-time-top-scorers/)
+                        <li><strong>Johan Cruyff (1973-1978)</strong>: Pioneered Total Football, 1 La Liga title, inspired modern Barça style.</li>
+                        <li><strong>Ronaldinho (2003-2008)</strong>: 2 Ballon d’Ors, 2 La Liga titles, 2006 Champions League.</li>[](https://fcbarcelonalatestnews.com/barcelona-all-time-top-scorers/)
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Scorers Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Top Scorers in El Clásico</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr class="bg-gradient">
+                            <th class="p-4">Player</th>
+                            <th class="p-4">Team</th>
+                            <th class="p-4">Goals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Lionel Messi</td>
+                            <td class="p-4">Barcelona</td>
+                            <td class="p-4">26</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Cristiano Ronaldo</td>
+                            <td class="p-4">Real Madrid</td>
+                            <td class="p-4">18</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Alfredo Di Stéfano</td>
+                            <td class="p-4">Real Madrid</td>
+                            <td class="p-4">18</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Karim Benzema</td>
+                            <td class="p-4">Real Madrid</td>
+                            <td class="p-4">16</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Raúl González</td>
+                            <td class="p-4">Real Madrid</td>
+                            <td class="p-4">15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-sm mt-2">Data as of May 2025</p>[](https://www.planetfootball.com/stats-tables/top-scorers-el-clasico-history-barcelona-real-madrid-messi-ronaldo)[](https://www.sportsmole.co.uk/football/barcelona/el-clasico/feature/the-best-of-barca-and-real-madrid-el-clasico-all-time-top-scorers_556284.html)
+        </section>
+
+        <!-- Top Assisters Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Top Assisters in El Clásico</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr class="bg-gradient">
+                            <th class="p-4">Player</th>
+                            <th class="p-4">Team</th>
+                            <th class="p-4">Assists</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Lionel Messi</td>
+                            <td class="p-4">Barcelona</td>
+                            <td class="p-4">14</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Karim Benzema</td>
+                            <td class="p-4">Real Madrid</td>
+                            <td class="p-4">6</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Sergi Roberto</td>
+                            <td class="p-4">Barcelona</td>
+                            <td class="p-4">6</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Jordi Alba</td>
+                            <td class="p-4">Barcelona</td>
+                            <td class="p-4">6</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Francisco Gento</td>
+                            <td class="p-4">Real Madrid</td>
+                            <td class="p-4">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-sm mt-2">Data as of May 2025</p>[](https://therealchamps.com/real-madrid-vs-barcelona-all-time-top-goal-scorers-el-clasico-2025)
+        </section>
+
+        <!-- Best and Worst Seasons Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Best and Worst Seasons</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-bold text-center">Real Madrid</h3>
+                    <p><strong>Best Season (2011-12)</strong>: 100 points in La Liga, 121 goals scored, won La Liga title.</p>[](https://en.wikipedia.org/wiki/El_Cl%25C3%25A1sico)
+                    <p><strong>Worst Season (1998-99)</strong>: Finished 2nd in La Liga but struggled in Europe, exiting Champions League in quarter-finals.</p>
+                </div>
+                <div class="bg-red-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-bold text-center">Barcelona</h3>
+                    <p><strong>Best Season (2012-13)</strong>: 100 points in La Liga, 115 goals scored, won La Liga title.</p>[](https://en.wikipedia.org/wiki/El_Cl%25C3%25A1sico)
+                    <p><strong>Worst Season (1994-95)</strong>: Finished 4th in La Liga, early Champions League exit, managerial instability.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Results Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Recent El Clásico Results</h2>
+            <ul class="space-y-4">
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">11/05/2025: <span class="font-bold">Barcelona 4-3 Real Madrid</span> (La Liga)</li>[](https://www.bbc.co.uk/sport/football/live/c62x2g9d9dgt)
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">26/04/2025: <span class="font-bold">Barcelona 3-2 Real Madrid</span> (Copa del Rey Final)</li>
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">12/01/2025: <span class="font-bold">Barcelona 5-2 Real Madrid</span> (Spanish Super Cup)</li>
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">26/10/2024: <span class="font-bold">Barcelona 4-0 Real Madrid</span> (La Liga)</li>[](https://www.givemesport.com/top-scorers-el-clasico-history-barcelona-real-madrid-messi-ronaldo/)
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">21/04/2024: <span class="font-bold">Real Madrid 3-2 Barcelona</span> (La Liga)</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-gradient py-4 text-center">
+        <p class="text-lg">Created with ❤️ for Football Fans | Data sourced from reliable football statistics</p>[](https://www.planetfootball.com/stats-tables/top-scorers-el-clasico-history-barcelona-real-madrid-messi-ronaldo)[](https://therealchamps.com/real-madrid-vs-barcelona-all-time-top-goal-scorers-el-clasico-2025)[](https://en.wikipedia.org/wiki/El_Cl%25C3%25A1sico)
+    </footer>
+
+    <script>
+        // Add animation delay to elements for staggered effect
+        document.querySelectorAll('.animate-slide-in').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+        });
+        document.querySelectorAll('.animate-fade-in').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.3}s`;
+        });
+    </script>
+</body>
+</html>
