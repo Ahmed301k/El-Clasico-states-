@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona vs Real Madrid: El Clásico Rivalry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-slide-in {
+            animation: slideIn 1s ease-out forwards;
+        }
+        .animate-fade-in {
+            animation: fadeIn 1.5s ease-in forwards;
+        }
+        .bg-gradient {
+            background: linear-gradient(135deg, #1e3a8a, #dc2626, #fef08a);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .team-logo {
+            transition: transform 0.5s ease;
+        }
+        .team-logo:hover {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <header class="bg-gradient py-6 text-center">
+        <h1 class="text-5xl font-bold animate-slide-in">El Clásico: Barcelona vs Real Madrid</h1>
+        <p class="text-xl mt-2 animate-fade-in">The Ultimate Rivalry in Football</p>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <!-- Head-to-Head Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Head-to-Head Record</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Logo" class="team-logo w-24 h-24 mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-center">Real Madrid</h3>
+                    <p class="text-center">Wins: 105</p>
+                </div>
+                <div class="bg-red-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="Barcelona Logo" class="team-logo w-24 h-24 mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-center">Barcelona</h3>
+                    <p class="text-center">Wins: 104</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-2xl font-bold text-center">Draws</h3>
+                    <p class="text-center">52</p>
+                    <p class="text-center mt-2">Total Matches: 261</p>
+                </div>
+            </div>
+            <p class="text-center mt-4 text-lg">Win Ratio: Real Madrid 40.23% | Barcelona 39.85% | Draws 19.92%</p>
+            <p class="text-center text-sm mt-2">Data as of May 11, 2025</p>
+        </section>
+
+        <!-- Trophy Comparison Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Trophy Comparison</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr class="bg-gradient">
+                            <th class="p-4">Competition</th>
+                            <th class="p-4">Real Madrid</th>
+                            <th class="p-4">Barcelona</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">La Liga</td>
+                            <td class="p-4">35</td>
+                            <td class="p-4">27</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Copa del Rey</td>
+                            <td class="p-4">20</td>
+                            <td class="p-4">31</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Spanish Super Cup</td>
+                            <td class="p-4">12</td>
+                            <td class="p-4">14</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">UEFA Champions League</td>
+                            <td class="p-4">15</td>
+                            <td class="p-4">5</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">UEFA Super Cup</td>
+                            <td class="p-4">6</td>
+                            <td class="p-4">5</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Club World Cup</td>
+                            <td class="p-4">5</td>
+                            <td class="p-4">3</td>
+                        </tr>
+                        <tr class="hover:bg-gray-700">
+                            <td class="p-4">Total Major Trophies</td>
+                            <td class="p-4">122</td>
+                            <td class="p-4">128</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center text-sm mt-2">Data as of May 2025</p>
+        </section>
+
+        <!-- Recent Results Section -->
+        <section class="my-12">
+            <h2 class="text-3xl font-semibold text-center mb-6 animate-slide-in">Recent El Clásico Results</h2>
+            <ul class="space-y-4">
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">26/04/2025: <span class="font-bold">Barcelona 3-2 Real Madrid</span> (Copa del Rey Final)</li>
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">12/01/2025: <span class="font-bold">Barcelona 5-2 Real Madrid</span> (Spanish Super Cup)</li>
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">26/10/2024: <span class="font-bold">Barcelona 4-0 Real Madrid</span> (La Liga)</li>
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">21/04/2024: <span class="font-bold">Real Madrid 3-2 Barcelona</span> (La Liga)</li>
+                <li class="bg-gray-800 p-4 rounded-lg hover-scale">14/01/2024: <span class="font-bold">Real Madrid 4-1 Barcelona</span> (Spanish Super Cup)</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-gradient py-4 text-center">
+        <p class="text-lg">Created with ❤️ for Football Fans | Data sourced from reliable football statistics</p>
+    </footer>
+
+    <script>
+        // Add animation delay to elements for staggered effect
+        document.querySelectorAll('.animate-slide-in').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+        });
+        document.querySelectorAll('.animate-fade-in').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.3}s`;
+        });
+    </script>
+</body>
+</html>
